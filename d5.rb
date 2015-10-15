@@ -23,13 +23,14 @@ def merge(left, right)
 end
 
 def binary_search(arr, target)
+  #return nil if arr.empty?
   return nil if arr.length == 1 && arr[0] != target
 
   mid = arr.length / 2
   return mid if arr[mid] == target
 
-  left = arr[1..mid]
-  right = arr[mid + 1..-1]
+  left = arr[1..mid] # arr.take(mid)
+  right = arr[mid + 1..-1] # arr.drop(mid + 1)
 
   if target < arr[mid]
     binary_search(left, target)
@@ -42,5 +43,21 @@ end
 def productify(arr)
   products = Array.new(arr.length) { 1 }
 
-  
+  lower_prod = 1
+  (0).upto(arr.length - 1) do |i|
+    products[i] = products[i] * lower_prod
+    lower_prod = lower_prod * arr[i]
+  end
+
+  upper_prod = 1
+  (arr.length - 1).downto(0) do |i|
+    products[i] = products[i] * upper_prod
+    upper_prod = upper_prod * arr[i]
+  end
+
+  products
 end
+
+#tests
+
+p productify([1,2,3,4]) # [24, 12, 8, 6]
