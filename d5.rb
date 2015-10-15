@@ -23,7 +23,7 @@ def merge(left, right)
 end
 
 def binary_search(arr, target)
-  return -1 if arr.length == 1 && arr[0] != target
+  return nil if arr.length == 1 && arr[0] != target
 
   mid = arr.length / 2
   return mid if arr[mid] == target
@@ -35,6 +35,12 @@ def binary_search(arr, target)
     binary_search(left, target)
   else
     pos_res = binary_search(right, target)
-    
+    pos_res.nil? ? nil : pos_res + mid + 1
   end
+end
+
+def productify(arr)
+  products = Array.new(arr.length) { 1 }
+
+  
 end
