@@ -13,11 +13,15 @@ def subsets(arr)
 end
 
 def fast_intersection(arr1, arr2)
-  set1 = Set.new(arr1)
+  hash1 = Hash.new(0)
   intersection = []
+  arr1.each { |el| hash1[el] += 1 }
 
   arr2.each do |el|
-    intersection << el if set1.include?(el)
+    if hash1[el] > 0
+      hash1[el] -= 1
+      intersection << el
+    end
   end
 
   intersection
