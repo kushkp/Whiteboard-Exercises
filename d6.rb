@@ -1,3 +1,5 @@
+require 'set'
+
 # returns ___ sets
 def subsets(arr)
   return [[]] if arr.empty?
@@ -10,7 +12,16 @@ def subsets(arr)
   prev + new_subs
 end
 
+def fast_intersection(arr1, arr2)
+  set1 = Set.new(arr1)
+  intersection = []
 
+  arr2.each do |el|
+    intersection << el if set1.include?(el)
+  end
+
+  intersection
+end
 
 #tests
 p subsets([1,2,3,4])
