@@ -40,6 +40,21 @@ def look_and_say(arr)
   result
 end
 
+def weighted_random_index(arr)
+  map = []
+
+  sum = 0
+  arr.each_with_index do |el, index|
+    map << [index, sum += el]
+  end
+
+  rand_num = rand(sum)
+
+  map.each do |key|
+    return key[0] if rand_num < key[1]
+  end
+end
+
 # tests
 # p move_zeros([2,3,4,5,6])
 # p move_zeros([0,0,0,0,0])
